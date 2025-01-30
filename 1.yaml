@@ -1,0 +1,397 @@
+# Default values for rasa.
+# This is a YAML-formatted file.
+
+# -- (string) Override name of app
+nameOverride: ""
+
+# -- (string) Override the full qualified app name
+fullnameOverride: ""
+
+# -- Registry to use for all Rasa images (default docker.io)
+## DockerHub - use docker.io/rasa
+registry: docker.io/rasa
+
+applicationSettings:
+  # -- Enable debug mode
+  debugMode: false
+
+  # -- Initial models to download and load if a models server or remote storage is not used. It has to be a URL (without auth) that points to a tar.gz file
+  initialModel: "https://github.com/RasaHQ/rasa-x-demo/blob/master/models/model.tar.gz?raw=true"
+
+  # -- Train a models if an initial models is not defined. This parameter is ignored if the `applicationSettings.initialModel` is defined
+  trainInitialModel: false
+
+  # -- Port on which Rasa runs
+  port: 5005
+
+  # -- Scheme by which the service are accessible
+  scheme: http
+
+  # -- Token Rasa accepts as authentication token from other Rasa services
+  token: "rasaToken"
+
+  # -- CORS for the passed origin. Default is * to allow all origins
+  cors: '*'
+
+  # -- Start the web server API in addition to the input channel
+  enableAPI: true
+
+  credentials:
+    # -- Enable credentials configuration for channel connectors
+    enabled: true
+
+    # -- Additional channel credentials which should be used by Rasa to connect to various input channels
+    additionalChannelCredentials: {}
+
+  telemetry:
+    # -- Enable telemetry
+    enabled: true
+
+  endpoints:
+    models:
+      # -- Enable endpoint for a models server
+      enabled: false
+
+      # -- URL address that models will be pulled from
+      url: http://my-server.com/models/default
+
+      # -- Token used as a authentication token
+      token: "token"
+
+      # -- Time in seconds how often the models server will be querying
+      waitTimeBetweenPulls: 20
+
+      useRasaXasModelServer:
+        # -- Use Rasa X (Enterprise) as a models server
+        enabled: false
+
+        # -- The models with a given tag that should be pulled from the models server
+        tag: "production"
+
+    trackerStore:
+      # -- Enable endpoint for Tracker Store
+      enabled: true
+
+      # -- Tracker Store type
+      type: sql
+
+      # -- The dialect used to communicate with your SQL backend
+      dialect: "postgresql"
+
+      # -- URL of your SQL server
+      url: ${DB_HOST}
+
+      # -- Port of your SQL server
+      port: ${DB_PORT}
+
+      # -- The username which is used for authentication
+      username: ${DB_USER}
+
+      # -- The password which is used for authentication
+      password: ${DB_PASSWORD}
+
+      # -- The path to the database to be used
+      db: ${DB_DATABASE}
+
+      # -- Create the database for the tracker store.
+      login_db: ${DB_DATABASE}
+
+    lockStore:
+      # -- Enable endpoint for Lock Store
+      enabled: false
+
+      # -- Lock Store type
+      type: "redis"
+
+      # -- The url of your redis instance
+      url: ${REDIS_HOST}
+
+      # -- The port which redis is running on
+      port: ${REDIS_PORT}
+
+      # -- Password used for authentication
+      password: ${REDIS_PASSWORD}
+
+      # -- The database in redis which Rasa uses to store the conversation locks
+      db: "1"
+
+    eventBroker:
+      # -- Enable endpoint for Event Broker
+      enabled: false
+
+      # -- Event Broker
+      type: "pika"
+
+      # -- The url of an event broker
+      url: ${RABBITMQ_HOST}
+
+      # -- Username used for authentication
+      username: ${RABBITMQ_USERNAME}
+
+      # -- Password used for authentication
+      password: ${RABBITMQ_PASSWORD}
+
+      # -- The port which an event broker is listening on
+      port: ${RABBITMQ_PORT}
+
+      # -- Send all messages to a given queue
+      queues:
+        - rasa_production_events
+
+    action:
+      # -- the URL which Rasa Open Source calls to execute custom actions
+      endpointURL: /webhook
+
+    # -- Additional endpoints
+    additionalEndpoints: {}
+
+  rasaX:
+    # -- Run Rasa X / Enterprise server
+    enabled: false
+
+    # -- Token Rasa X / Enterprise accepts as authentication token from other Rasa services
+    token: "rasaXToken"
+
+    # -- URL to Rasa X / Enterprise, e.g. http://rasa-x.mydomain.com:5002
+    url: ""
+
+    # -- Rasa X / Enterprise endpoint URL from which to pull the runtime config
+    useConfigEndpoint: false
+
+# -- Specify the number of Rasa Open Source replicas
+replicaCount: 1
+
+# -- Allow the deployment to be scheduled on master node
+tolerations:
+  - key: "node-role.kubernetes.io/control-plane"
+    operator: "Exists"
+    effect: "NoSchedule"
+  - key: "node-role.kubernetes.io/master"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+nodeSelector:
+  node-role.kubernetes.io/control-plane: ""
+
+# -- Resource requests and limits
+resources:
+  requests:
+    cpu: "500m"
+    memory: "1Gi"
+  limits:
+    cpu: "1"
+    memory: "2Gi"
+
+# -- Annotations to add to the rasa-oss's pod(s)
+podAnnotations: {}
+
+# -- Labels to add to the rasa-oss's pod(s)
+podLabels: {}
+
+# -- Annotations to add to the rasa-oss deployment
+deploymentAnnotations: {}
+
+# -- Labels to add to the rasa-oss deployment
+deploymentLabels: {}
+
+# -- Defines pod-level security attributes and common container settings
+podSecurityContext: {}
+
+# -- Allows you to overwrite the pod-level security context
+securityContext: {}
+
+## Configuration for the service for the rasa-oss
+service:
+  # -- Set type of rasa service
+  type: ClusterIP
+
+  # -- Set port of rasa service (Kubernetes >= 1.15)
+  port: 5005
+
+  # -- Annotations to add to the service
+  annotations: {}
+
+  # -- Specify the nodePort(s) value(s) for the LoadBalancer and NodePort service types
+  nodePort:
+
+  # -- Exposes the Service externally using a cloud provider's load balancer
+  loadBalancerIP:
+
+  # -- Enable client source IP preservation
+  externalTrafficPolicy: Cluster
+
+## Configure the ingress resource that allows you to access the deployment installation
+ingress:
+  # -- Set to true to enable ingress
+  enabled: false
+
+  # -- Ingress annotations
+  annotations: {}
+
+  # -- Labels to add to the ingress
+  labels: {}
+
+  # -- Ingress Path type
+  pathType: ImplementationSpecific
+
+  # -- Ingress path
+  path: /
+
+  # -- Hostname used for the ingress
+  hostname: chart-example.local
+
+  # -- TLS configuration for ingress
+  tls: []
+
+  # -- Any additional arbitrary paths that may need to be added to the ingress under the main host
+  extraPaths: {}
+
+# -- Allow the deployment to perform a rolling update
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+
+# -- Override default liveness probe settings
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  successThreshold: 1
+  timeoutSeconds: 5
+  failureThreshold: 6
+
+# -- Override default readiness probe settings
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+    scheme: HTTP
+  initialDelaySeconds: 15
+  periodSeconds: 15
+  successThreshold: 1
+  timeoutSeconds: 5
+  failureThreshold: 6
+
+# -- Allow to specify init containers for the Rasa Open Source Deployment
+initContainers: []
+
+# -- Allow to specify additional containers for the Rasa Open Source Deployment
+extraContainers: []
+
+# -- Specify additional volumes to mount in the rasa-oss container
+volumes: []
+
+# -- Specify additional volumes to mount in the rasa-oss container
+volumeMounts: []
+
+## Global settings of the used subcharts
+global:
+  postgresql:
+    postgresqlUsername: "postgres"
+    postgresqlPassword: "password"
+    existingSecret: ""
+    postgresqlDatabase: "rasa"
+    servicePort: 5432
+
+  redis:
+    password: "redis-password"
+
+## PostgreSQL specific settings
+postgresql:
+  install: false
+
+  external:
+    enabled: false
+    host: "external-postgresql"
+
+## Redis(TM) specific settings
+redis:
+  install: false
+
+  replica:
+    replicaCount: 0
+
+  auth:
+    password: "redis-password"
+
+  external:
+    enabled: false
+    host: "external-redis"
+
+# RabbitMQ specific settings
+rabbitmq:
+  install: false
+
+  auth:
+    username: "user"
+    password: "password"
+    existingPasswordSecret: ""
+    erlangCookie: "erlangCookie"
+
+  external:
+    enabled: false
+    host: "external-rabbitmq"
+
+nginx:
+  enabled: true
+
+  image:
+    name: "nginx"
+    tag: "1.20"
+
+  livenessProbe:
+    httpGet:
+      path: /
+      port: http-nginx
+      scheme: HTTP
+    initialDelaySeconds: 15
+    periodSeconds: 15
+    successThreshold: 1
+    timeoutSeconds: 5
+    failureThreshold: 6
+
+  readinessProbe:
+    httpGet:
+      path: /
+      port: http-nginx
+      scheme: HTTP
+    initialDelaySeconds: 15
+    periodSeconds: 15
+    successThreshold: 1
+    timeoutSeconds: 5
+    failureThreshold: 6
+
+  port: 80
+
+  resources: {}
+
+  securityContext: {}
+
+  tls:
+    enabled: false
+    port: 443
+    generateSelfSignedCert: false
+    certificateSecret: ""
+
+  customConfiguration: {}
+
+## Settings for Rasa Action Server
+rasa-action-server:
+  install: false
+
+  external:
+    enabled: false
+    url: ""
+
+## Settings for Duckling
+duckling:
+  install: false
+
+  external:
+    enabled: false
+    url: ""

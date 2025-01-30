@@ -15,10 +15,10 @@ applicationSettings:
   # -- Enable debug mode
   debugMode: false
 
-  # -- Initial model to download and load if a model server or remote storage is not used. It has to be a URL (without auth) that points to a tar.gz file
+  # -- Initial models to download and load if a models server or remote storage is not used. It has to be a URL (without auth) that points to a tar.gz file
   initialModel: "https://github.com/RasaHQ/rasa-x-demo/blob/master/models/model.tar.gz?raw=true"
 
-  # -- Train a model if an initial model is not defined. This parameter is ignored if the `applicationSettings.initialModel` is defined
+  # -- Train a models if an initial models is not defined. This parameter is ignored if the `applicationSettings.initialModel` is defined
   trainInitialModel: false
 
   # -- Port on which Rasa runs
@@ -58,10 +58,10 @@ applicationSettings:
 
   ## Note: this endpoints configuration is ignored if `applicationSettings.rasaX.useConfigEndpoint=true`
   endpoints:
-    ## Fetch the model from your own HTTP server
+    ## Fetch the models from your own HTTP server
     ## See: https://rasa.com/docs/rasa/model-storage#load-model-from-server
     models:
-      # -- Enable endpoint for a model server
+      # -- Enable endpoint for a models server
       enabled: false
 
       # -- URL address that models will be pulled from
@@ -70,14 +70,14 @@ applicationSettings:
       # -- Token used as a authentication token
       token: "token"
 
-      # -- Time in seconds how often the model server will be querying
+      # -- Time in seconds how often the models server will be querying
       waitTimeBetweenPulls: 20
 
       useRasaXasModelServer:
-        # -- Use Rasa X (Enterprise) as a model server
+        # -- Use Rasa X (Enterprise) as a models server
         enabled: false
 
-        # -- The model with a given tag that should be pulled from the model server
+        # -- The models with a given tag that should be pulled from the models server
         tag: "production"
 
     ## You can use a Tracker Store to store your assistant's conversation history.

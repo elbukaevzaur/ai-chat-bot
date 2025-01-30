@@ -1,0 +1,84 @@
+---
+# Deployment для Rasa Core с Init Container
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rasa-core
+  labels:
+    app: rasa
+    component: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rasa
+      component: core
+  template:
+    metadata:
+      labels:
+        app: rasa
+        component: core
+    spec:
+      initContainers:
+        - name: download-models
+          image: alpine/git:latest  # Используем образ с Git
+          command:
+            - sh
+            - -c
+            - |
+              git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
+              tar -czf /app/models/model.tar.gz -C /model-repo/models .
+          volumeMounts:
+            - name: rasa-models
+              mountPath: /app/models
+      containers:
+        - name: rasa-core
+          image: rasa/rasa:3.0.0  # Используйте актуальный образ Rasa
+          ports:
+            - containerPort: 5005
+          env:
+            - name: RASA_PORT
+              value: "5005"
+          volumeMounts:
+            - name: rasa-models
+              mountPath: /app/models
+      volumes:
+        - name: rasa-models
+          emptyDir: {}
+---
+# Service для Rasa Core
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa-core
+  labels:
+    app: rasa
+    component: core
+spec:
+  selector:
+    app: rasa
+    component: core
+  ports:
+    - protocol: TCP
+      port: 5005
+      targetPort: 5005
+---
+# Ingress для внешнего доступа к Rasa Core
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rasa-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: chat-bot.elbukaevzaur-beginend-landing-aed5.twc1.net  # Замените на ваш домен
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rasa-core
+                port:
+                  number: 5005
