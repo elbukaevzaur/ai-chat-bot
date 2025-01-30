@@ -303,7 +303,7 @@ global:
 
 ## PostgreSQL specific settings
 postgresql:
-  install: true
+  install: false
 
   external:
     enabled: false
