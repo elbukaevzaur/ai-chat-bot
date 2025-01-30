@@ -1,0 +1,17 @@
+---
+# Service для Rasa Core
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa-core
+  labels:
+    app: rasa
+    component: core
+spec:
+  selector:
+    app: rasa
+    component: core
+  ports:
+    - protocol: TCP
+      port: 5005
+      targetPort: 5005
