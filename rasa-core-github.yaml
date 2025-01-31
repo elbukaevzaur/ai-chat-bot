@@ -64,7 +64,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: 185.125.200.209
+    - host: chat-bot.elbukaevzaur-beginend-landing-aed5.twc1.net
       http:
         paths:
           - path: /
