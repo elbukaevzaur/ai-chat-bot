@@ -93,7 +93,7 @@ spec:
     spec:
       containers:
         - name: rasa-action-server
-          image: elbukaevzaur/rasa-action-server:latest
+          image: elbukaevzaur/rasa-action-server
           ports:
             - containerPort: 8080
 ---
