@@ -5,10 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3021a804-cdf1-4709-a9d5-d121cd21f27a" name="Changes" comment="fix">
-      <change afterPath="$PROJECT_DIR$/rasa-core-ingress.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rasa-core-service.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/config.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/domain.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/nlu.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/rules.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/stories.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rasa-core-github.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rasa-core-github.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +89,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738234901793</updated>
-      <workItem from="1738234903029" duration="16469000" />
+      <workItem from="1738234903029" duration="17496000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
@@ -121,7 +123,23 @@
       <option name="project" value="LOCAL" />
       <updated>1738280033231</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix">
+      <option name="closed" value="true" />
+      <created>1738281270431</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1738281270431</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix">
+      <option name="closed" value="true" />
+      <created>1738281718167</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1738281718167</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

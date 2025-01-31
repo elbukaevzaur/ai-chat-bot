@@ -1,0 +1,12 @@
+version: "3.0"
+
+rules:
+  - rule: Ответ на приветствие
+    steps:
+      - intent: greet
+      - action: utter_greet
+
+  - rule: Ответ на прощание
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye

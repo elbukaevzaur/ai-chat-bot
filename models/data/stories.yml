@@ -1,0 +1,23 @@
+version: "3.0"
+
+stories:
+  - story: Приветствие и прощание
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - story: Пользователь соглашается
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: affirm
+      - action: utter_affirm
+
+  - story: Пользователь отказывается
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - intent: deny
+      - action: utter_deny

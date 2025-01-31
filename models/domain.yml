@@ -1,0 +1,21 @@
+version: "3.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+
+responses:
+  utter_greet:
+    - text: "Привет! Как я могу вам помочь?"
+  utter_goodbye:
+    - text: "До свидания! Если что-то понадобится, обращайтесь."
+  utter_affirm:
+    - text: "Отлично! Чем еще могу помочь?"
+  utter_deny:
+    - text: "Хорошо, если что-то понадобится, я здесь."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
