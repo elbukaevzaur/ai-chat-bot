@@ -15,23 +15,3 @@ spec:
     - protocol: TCP
       port: 5005
       targetPort: 5005
----
-# Ingress для внешнего доступа к Rasa Core
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: rasa-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-    - host: 185.125.200.209
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: rasa-core
-                port:
-                  number: 5005
