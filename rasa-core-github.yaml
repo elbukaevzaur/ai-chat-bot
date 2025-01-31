@@ -1,5 +1,3 @@
----
-# Deployment для Rasa Core с Init Container
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -21,24 +19,38 @@ spec:
     spec:
       initContainers:
         - name: download-models
-          image: alpine/git:latest  # Используем образ с Git
+          image: alpine/git:latest
           command:
             - sh
             - -c
             - |
+              echo "Клонируем репозиторий..."
               git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
-              tar -czf /app/models/model.tar.gz -C /model-repo/models .
+              echo "Архивируем модели..."
+              tar -czf /app/models/model.tar.gz -C /model-repo/models . &&
+              echo "Модели успешно загружены."
           volumeMounts:
             - name: rasa-models
               mountPath: /app/models
       containers:
         - name: rasa-core
-          image: rasa/rasa:3.0.0  # Используйте актуальный образ Rasa
+          image: rasa/rasa:3.0.0
           ports:
             - containerPort: 5005
           env:
             - name: RASA_PORT
               value: "5005"
+          command:
+            - sh
+            - -c
+            - |
+              if [ -f /app/models/model.tar.gz ]; then
+                echo "Модель найдена, запускаем Rasa Core..."
+                rasa run --model /app/models/model.tar.gz --port $RASA_PORT
+              else
+                echo "Ошибка: Модель не найдена!"
+                exit 1
+              fi
           volumeMounts:
             - name: rasa-models
               mountPath: /app/models
