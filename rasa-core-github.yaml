@@ -43,7 +43,7 @@ spec:
             - -c
             - |
               echo "Обучаем модель..."
-              rasa train --data /model-repo/data --domain /model-repo/domain.yml --config /model-repo/config.yml --out /app/models &&
+              rasa train --data /model-repo/models/data --domain /model-repo/models/domain.yml --config /model-repo/models/config.yml --out /app/models &&
               echo "Модель успешно обучена, запускаем Rasa Core..."
               rasa run --model /app/models/model.tar.gz --port $RASA_PORT
           volumeMounts:
