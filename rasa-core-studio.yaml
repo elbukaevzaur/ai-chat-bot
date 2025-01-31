@@ -119,6 +119,6 @@ spec:
     component: studio
   ports:
     - protocol: TCP
-      port: 80
+      port: 81
       targetPort: 5002
       nodePort: 30081
