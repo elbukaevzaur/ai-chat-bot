@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rasa-core
+  labels:
+    app: rasa
+    component: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rasa
+      component: core
+  template:
+    metadata:
+      labels:
+        app: rasa
+        component: core
+    spec:
+      initContainers:
+        - name: download-models
+          image: alpine/git:latest
+          command:
+            - sh
+            - -c
+            - |
+              echo "Клонируем репозиторий..."
+              git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
+              cp -r /model-repo/models/* /app/models/ &&
+              ls /app/models/ &&
+              echo "Модели успешно загружены."
+          volumeMounts:
+            - name: rasa-models
+              mountPath: /app/models
+      containers:
+        - name: rasa-core
+          image: rasa/rasa:3.0.0
+          ports:
+            - containerPort: 5005
+          env:
+            - name: RASA_PORT
+              value: "5005"
+            - name: RASA_ACTIONS_URL
+              value: "http://rasa-action-server:85/webhook"
+          command:
+            - sh
+            - -c
+            - |
+              echo "Обучаем модель..."
+              rasa train --data /app/models/data --domain /app/models/domain.yml --config /app/models/config.yml --out /app/models &&
+              echo "Модель успешно обучена, запускаем Rasa Core..."
+              rasa run --model /app/models/model.tar.gz --port $RASA_PORT
+          volumeMounts:
+            - name: rasa-models
+              mountPath: /app/models
+      volumes:
+        - name: rasa-models
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa-core-service
+spec:
+  type: NodePort
+  selector:
+    app: rasa
+    component: core
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5005
+      nodePort: 30080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rasa-action-server
+  labels:
+    app: rasa
+    component: action-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rasa
+      component: action-server
+  template:
+    metadata:
+      labels:
+        app: rasa
+        component: action-server
+    spec:
+      containers:
+        - name: rasa-action-server
+          image: elbukaevzaur/rasa-action-server:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa-action-server-service
+spec:
+  type: NodePort
+  selector:
+    app: rasa
+    component: action-server
+  ports:
+    - protocol: TCP
+      port: 85
+      targetPort: 8080
+      nodePort: 30085
