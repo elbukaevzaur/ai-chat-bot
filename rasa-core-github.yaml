@@ -26,8 +26,7 @@ spec:
             - |
               echo "Клонируем репозиторий..."
               git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
-              cp -r /model-repo/models /app/models &&
-              echo "Модели успешно загружены."
+              cp -r /model-repo/models/* /app/models/ &&
               echo "Модели успешно загружены."
           volumeMounts:
             - name: rasa-models
