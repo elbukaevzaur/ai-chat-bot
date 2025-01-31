@@ -16,7 +16,7 @@ rules:
       - intent: affirm
       - action: utter_affirm
 
-  - rule: Создание заказа
+  - rule: Ответ на создание заказа
     steps:
       - intent: create_order
       - action: utter_order_created
