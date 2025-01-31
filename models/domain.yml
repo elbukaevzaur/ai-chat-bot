@@ -22,9 +22,9 @@ responses:
 actions:
   - create_order
 
-slots:
-  order_id:
-    type: text
+#slots:
+#  order_id:
+#    type: text
 
 session_config:
   session_expiration_time: 60
