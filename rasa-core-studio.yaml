@@ -1,0 +1,124 @@
+# Rasa Core Deployment (остаётся без изменений)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rasa-core
+  labels:
+    app: rasa
+    component: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rasa
+      component: core
+  template:
+    metadata:
+      labels:
+        app: rasa
+        component: core
+    spec:
+      initContainers:
+        - name: download-models
+          image: alpine/git:latest
+          command:
+            - sh
+            - -c
+            - |
+              git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
+              cp -r /model-repo/models/* /app/models/ &&
+              ls -l /app/models/
+          volumeMounts:
+            - name: rasa-models
+              mountPath: /app/models
+      containers:
+        - name: rasa-core
+          image: rasa/rasa:3.0.0
+          ports:
+            - containerPort: 5005
+          command:
+            - sh
+            - -c
+            - |
+              rasa train --data /app/models/data --domain /app/models/domain.yml --config /app/models/config.yml --out /app/models &&
+              rasa run --model /app/models/model.tar.gz --port 5005
+          volumeMounts:
+            - name: rasa-models
+              mountPath: /app/models
+      volumes:
+        - name: rasa-models
+          emptyDir: {}
+
+---
+# Rasa Core Service (остаётся без изменений)
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa-core-service
+spec:
+  type: NodePort
+  selector:
+    app: rasa
+    component: core
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5005
+      nodePort: 30080
+
+---
+# Rasa Studio Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rasa-studio
+  labels:
+    app: rasa
+    component: studio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rasa
+      component: studio
+  template:
+    metadata:
+      labels:
+        app: rasa
+        component: studio
+    spec:
+      containers:
+        - name: rasa-studio
+          image: rasa/rasa-x:1.0.0
+          ports:
+            - containerPort: 5002
+          env:
+            - name: RASA_X_HOST
+              value: "0.0.0.0"
+            - name: RASA_X_PASSWORD
+              value: "your_password"
+            - name: RASA_X_DB_ENDPOINT
+              value: "sqlite:///rasa.db"
+          volumeMounts:
+            - name: rasa-studio-data
+              mountPath: /app/data
+      volumes:
+        - name: rasa-studio-data
+          emptyDir: {}
+
+---
+# Rasa Studio Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: rasa-studio-service
+spec:
+  type: NodePort
+  selector:
+    app: rasa
+    component: studio
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5002
+      nodePort: 30081
