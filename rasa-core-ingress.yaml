@@ -6,7 +6,8 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - http:
+    - host: chat-bot.elbukaevzaur-beginend-landing-aed5.twc1.net
+      http:
         paths:
           - path: /
             pathType: Prefix
