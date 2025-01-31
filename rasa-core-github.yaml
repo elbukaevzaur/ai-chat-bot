@@ -26,6 +26,8 @@ spec:
             - |
               echo "Клонируем репозиторий..."
               git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
+              cp -r /model-repo/models /app/models &&
+              echo "Модели успешно загружены."
               echo "Модели успешно загружены."
           volumeMounts:
             - name: rasa-models
@@ -43,7 +45,7 @@ spec:
             - -c
             - |
               echo "Обучаем модель..."
-              rasa train --data /model-repo/models/data --domain /model-repo/models/domain.yml --config /model-repo/models/config.yml --out /app/models &&
+              rasa train --data /app/models/data --domain /app/models/domain.yml --config /app/models/config.yml --out /app/models &&
               echo "Модель успешно обучена, запускаем Rasa Core..."
               rasa run --model /app/models/model.tar.gz --port $RASA_PORT
           volumeMounts:
