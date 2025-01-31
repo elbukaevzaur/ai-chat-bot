@@ -60,30 +60,30 @@ kind: Service
 metadata:
   name: rasa-core-service
 spec:
+  type: NodePort
   selector:
     app: rasa-core
-  type: NodePort
   ports:
     - protocol: TCP
       port: 80
       targetPort: 5005
       nodePort: 30080
-#---
+---
 # Ingress для внешнего доступа к Rasa Core
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: rasa-ingress
-#  annotations:
-#    nginx.ingress.kubernetes.io/rewrite-target: /
-#spec:
-#  rules:
-#    - http:
-#        paths:
-#          - path: /
-#            pathType: Prefix
-#            backend:
-#              service:
-#                name: rasa-core-service
-#                port:
-#                  number: 80
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rasa-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rasa-core-service
+                port:
+                  number: 80
