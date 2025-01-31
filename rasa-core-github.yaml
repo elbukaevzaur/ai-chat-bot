@@ -18,17 +18,17 @@ spec:
         component: core
     spec:
       initContainers:
-        - name: download-models
-          image: alpine/git:latest
+        - name: download-and-train-models
+          image: rasa/rasa:3.0.0
           command:
             - sh
             - -c
             - |
               echo "Клонируем репозиторий..."
               git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
-              echo "Архивируем модели..."
-              tar -czf /app/models/model.tar.gz -C /model-repo/models . &&
-              echo "Модели успешно загружены."
+              echo "Обучаем модель..."
+              rasa train --data /model-repo/data --domain /model-repo/domain.yml --config /model-repo/config.yml --out /app/models &&
+              echo "Модель успешно обучена и сохранена."
           volumeMounts:
             - name: rasa-models
               mountPath: /app/models
