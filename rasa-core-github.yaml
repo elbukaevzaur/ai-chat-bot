@@ -18,17 +18,15 @@ spec:
         component: core
     spec:
       initContainers:
-        - name: download-and-train-models
-          image: rasa/rasa:3.0.0
+        - name: download-models
+          image: alpine/git:latest
           command:
             - sh
             - -c
             - |
               echo "Клонируем репозиторий..."
               git clone https://github.com/elbukaevzaur/ai-chat-bot.git /model-repo &&
-              echo "Обучаем модель..."
-              rasa train --data /model-repo/data --domain /model-repo/domain.yml --config /model-repo/config.yml --out /app/models &&
-              echo "Модель успешно обучена и сохранена."
+              echo "Модели успешно загружены."
           volumeMounts:
             - name: rasa-models
               mountPath: /app/models
@@ -44,13 +42,10 @@ spec:
             - sh
             - -c
             - |
-              if [ -f /app/models/model.tar.gz ]; then
-                echo "Модель найдена, запускаем Rasa Core..."
-                rasa run --model /app/models/model.tar.gz --port $RASA_PORT
-              else
-                echo "Ошибка: Модель не найдена!"
-                exit 1
-              fi
+              echo "Обучаем модель..."
+              rasa train --data /model-repo/data --domain /model-repo/domain.yml --config /model-repo/config.yml --out /app/models &&
+              echo "Модель успешно обучена, запускаем Rasa Core..."
+              rasa run --model /app/models/model.tar.gz --port $RASA_PORT
           volumeMounts:
             - name: rasa-models
               mountPath: /app/models
