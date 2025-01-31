@@ -5,6 +5,7 @@ intents:
   - goodbye
   - affirm
   - deny
+  - create_order
 
 responses:
   utter_greet:
@@ -15,6 +16,15 @@ responses:
     - text: "Отлично! Чем еще могу помочь?"
   utter_deny:
     - text: "Хорошо, если что-то понадобится, я здесь."
+  utter_order_created:
+    - text: "Ваш заказ создан. Номер заказа: order_id"
+
+actions:
+  - create_order
+
+slots:
+  order_id:
+    type: text
 
 session_config:
   session_expiration_time: 60

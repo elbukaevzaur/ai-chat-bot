@@ -1,6 +1,12 @@
 version: "3.0"
 
 nlu:
+  - intent: create_order
+    examples: |
+      - Я хочу заказать пиццу
+      - Мне нужно заказать еду
+      - Хочу сделать заказ
+
   - intent: greet
     examples: |
       - Привет
