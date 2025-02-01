@@ -40,8 +40,8 @@ spec:
           env:
             - name: RASA_PORT
               value: "5005"
-            - name: RASA_ACTIONS_URL
-              value: "http://rasa-action-server:8080/webhook"
+            - name: ACTION_SERVER_URL
+              value: "http://rasa-action-server:85/webhook"
           command:
             - sh
             - -c
