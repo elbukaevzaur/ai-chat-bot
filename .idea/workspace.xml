@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3021a804-cdf1-4709-a9d5-d121cd21f27a" name="Changes" comment="fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/endpoints.yml" beforeDir="false" afterPath="$PROJECT_DIR$/models/endpoints.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/rasa-core-github_new.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/rasa-core-github_new.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +90,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738234901793</updated>
-      <workItem from="1738234903029" duration="65265000" />
+      <workItem from="1738234903029" duration="65628000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
@@ -445,7 +444,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738435882576</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="fix">
+      <option name="closed" value="true" />
+      <created>1738437164753</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1738437164753</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
