@@ -34,16 +34,28 @@ actions:
 slots:
   date:
     type: text
+    mappings:
+      - type: from_text
   time:
     type: text
+    mappings:
+      - type: from_text
   party_size:
     type: text
+    mappings:
+      - type: from_text
   special_request:
     type: text
+    mappings:
+      - type: from_text
   dish:
     type: text
+    mappings:
+      - type: from_text
   drink:
     type: text
+    mappings:
+      - type: from_text
 
 session_config:
   session_expiration_time: 60
