@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3021a804-cdf1-4709-a9d5-d121cd21f27a" name="Changes" comment="fix">
+      <change afterPath="$PROJECT_DIR$/models/endpoints.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/models/config.yml" afterDir="false" />
     </list>
@@ -90,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1738234901793</updated>
-      <workItem from="1738234903029" duration="59931000" />
+      <workItem from="1738234903029" duration="60774000" />
     </task>
     <task id="LOCAL-00001" summary="fix">
       <option name="closed" value="true" />
@@ -412,7 +413,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738414937665</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="fix">
+      <option name="closed" value="true" />
+      <created>1738415588920</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1738415588920</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
