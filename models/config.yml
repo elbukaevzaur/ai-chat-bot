@@ -30,7 +30,3 @@ policies:
     core_fallback_threshold: 1
     core_fallback_action_name: "action_default_fallback"
     enable_fallback_prediction: True
-
-endpoints:
-  action:
-    url: "http://rasa-action-server:85/webhook"
