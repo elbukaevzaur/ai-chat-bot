@@ -41,7 +41,7 @@ spec:
             - name: RASA_PORT
               value: "5005"
             - name: RASA_ACTIONS_URL
-              value: "http://rasa-action-server:85/webhook"
+              value: "http://rasa-action-server-service:85/webhook"
           command:
             - sh
             - -c
