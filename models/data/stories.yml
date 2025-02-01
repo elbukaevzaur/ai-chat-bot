@@ -1,29 +1,23 @@
 version: "3.0"
 
 stories:
-  - story: Приветствие и прощание
+  - story: Бронирование столика и заказ еды
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: goodbye
-      - action: utter_goodbye
-
-  - story: Пользователь соглашается
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: affirm
-      - action: utter_affirm
-
-  - story: Пользователь отказывается
-    steps:
-      - intent: greet
-      - action: utter_greet
-      - intent: deny
-      - action: utter_deny
-
-  - story: Создание заказа
-    steps:
-      - intent: create_order
-      - action: create_order
-      - action: utter_order_created
+      - intent: book_table
+      - action: utter_ask_date_time
+      - intent: provide_date_time
+      - action: action_book_table
+      - intent: provide_party_size
+      - action: utter_ask_special_request
+      - intent: special_request
+      - action: utter_confirm_booking
+      - intent: order_food
+      - action: utter_show_menu
+      - intent: choose_dish
+      - action: action_take_order
+      - intent: choose_drink
+      - action: utter_confirm_order
+      - intent: confirm_order
+      - action: action_take_order

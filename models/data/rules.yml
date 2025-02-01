@@ -1,23 +1,23 @@
 version: "3.0"
 
-rules:
-  - rule: Ответ на приветствие
-    steps:
-      - intent: greet
-      - action: utter_greet
-
-  - rule: Ответ на прощание
-    steps:
-      - intent: goodbye
-      - action: utter_goodbye
-
-  - rule: Ответ на Да
-    steps:
-      - intent: affirm
-      - action: utter_affirm
-
-  - rule: Ответ на создание заказа
-    steps:
-      - intent: create_order
-      - action: create_order
-      - action: utter_order_created
+#rules:
+#  - rule: Ответ на приветствие
+#    steps:
+#      - intent: greet
+#      - action: utter_greet
+#
+#  - rule: Ответ на прощание
+#    steps:
+#      - intent: goodbye
+#      - action: utter_goodbye
+#
+#  - rule: Ответ на Да
+#    steps:
+#      - intent: affirm
+#      - action: utter_affirm
+#
+#  - rule: Ответ на создание заказа
+#    steps:
+#      - intent: create_order
+#      - action: create_order
+#      - action: utter_order_created

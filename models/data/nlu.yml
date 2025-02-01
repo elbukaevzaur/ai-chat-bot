@@ -1,40 +1,43 @@
 version: "3.0"
 
 nlu:
-  - intent: create_order
-    examples: |
-      - Я хочу заказать пиццу
-      - Мне нужно заказать еду
-      - Хочу сделать заказ
-
   - intent: greet
     examples: |
       - Привет
+      - Ассаламу 1алайкум
       - Здравствуйте
-      - Добрый день
-      - Приветствую
-      - Хай
-
-  - intent: goodbye
+      - Де дик хил
+      - Суьйре дик хил
+  - intent: book_table
     examples: |
-      - Пока
-      - До свидания
-      - Увидимся
-      - Прощайте
-      - Всего доброго
-
-  - intent: affirm
+      - Хочу забронировать столик
+      - Забронируйте мне столик
+  - intent: provide_date_time
     examples: |
-      - Да
-      - Конечно
-      - Ага
-      - Ок
-      - Хорошо
-
-  - intent: deny
+      - На завтра, в 19:00
+      - Сегодня в 20:00
+  - intent: provide_party_size
     examples: |
-      - Нет
-      - Не надо
-      - Не сейчас
-      - Не хочу
-      - Не нужно
+      - На 4 человека
+      - На двоих
+  - intent: special_request
+    examples: |
+      - Столик у окна
+      - В VIP-зоне
+  - intent: order_food
+    examples: |
+      - Хочу сделать заказ
+      - Покажите меню
+  - intent: choose_dish
+    examples: |
+      - Я возьму борщ
+      - Стейк из лосося
+  - intent: choose_drink
+    examples: |
+      - Вода
+      - Сок апельсиновый
+      - Коктейль
+  - intent: confirm_order
+    examples: |
+      - Да, все верно
+      - Подтверждаю заказ

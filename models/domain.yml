@@ -2,29 +2,48 @@ version: "3.0"
 
 intents:
   - greet
-  - goodbye
-  - affirm
-  - deny
-  - create_order
+  - book_table
+  - provide_date_time
+  - provide_party_size
+  - special_request
+  - order_food
+  - choose_dish
+  - choose_drink
+  - confirm_order
 
 responses:
   utter_greet:
-    - text: "Привет! Как я могу вам помочь?"
-  utter_goodbye:
-    - text: "До свидания! Если что-то понадобится, обращайтесь."
-  utter_affirm:
-    - text: "Отлично! Чем еще могу помочь?"
-  utter_deny:
-    - text: "Хорошо, если что-то понадобится, я здесь."
-  utter_order_created:
-    - text: "Ваш заказ создан. Номер заказа: order_id"
+    - text: "Здравствуйте! Добро пожаловать в наш ресторан. Чем могу помочь?"
+  utter_ask_date_time:
+    - text: "На какое число и время вы хотите забронировать столик?"
+  utter_ask_party_size:
+    - text: "На сколько человек нужен столик?"
+  utter_ask_special_request:
+    - text: "Есть ли у вас особые пожелания? Например, столик у окна или в VIP-зоне?"
+  utter_confirm_booking:
+    - text: "Хорошо, я забронировал для вас столик на {party_size} человека на {date} в {time}. Ждем вас!"
+  utter_show_menu:
+    - text: "Вот наше меню:\n- Первые блюда: Суп грибной, Борщ.\n- Основные блюда: Стейк из лосося, Паста карбонара.\n- Напитки: Вино красное, Сок апельсиновый.\nЧто вы хотите заказать?"
+  utter_confirm_order:
+    - text: "Ваш заказ:\n- {dish}\n- {drink}\nВсе верно?"
 
 actions:
-  - create_order
+  - action_book_table
+  - action_take_order
 
-#slots:
-#  order_id:
-#    type: text
+slots:
+  date:
+    type: text
+  time:
+    type: text
+  party_size:
+    type: text
+  special_request:
+    type: text
+  dish:
+    type: text
+  drink:
+    type: text
 
 session_config:
   session_expiration_time: 60
