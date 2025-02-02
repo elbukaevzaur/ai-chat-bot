@@ -36,10 +36,12 @@ slots:
     type: text
     mappings:
       - type: from_text
+        entity: date
   time:
     type: text
     mappings:
       - type: from_text
+        entity: time
   party_size:
     type: text
     mappings:
