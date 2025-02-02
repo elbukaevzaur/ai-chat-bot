@@ -2,67 +2,67 @@ version: "3.0"
 
 intents:
   - greet
-  - like_book_table
-  - provide_date_time
-#  - provide_party_size
-#  - special_request
-#  - order_food
-#  - choose_dish
-#  - choose_drink
-#  - confirm_order
+  - order_food
+  - provide_info
+  - ask_menu
+  - ask_working_hours
+  - goodbye
 
-responses:
-  utter_greet:
-    - text: "Здравствуйте! Добро пожаловать в наш ресторан. Чем могу помочь?"
-  utter_ask_date_time:
-    - text: "На какое число и время вы хотите забронировать столик?"
-  utter_ask_party_size:
-    - text: "На сколько человек нужен столик?"
-#  utter_ask_special_request:
-#    - text: "Есть ли у вас особые пожелания? Например, столик у окна или в VIP-зоне?"
-#  utter_confirm_booking:
-#    - text: "Хорошо, я забронировал для вас столик на {party_size} человека на {date} в {time}. Ждем вас!"
-#  utter_show_menu:
-#    - text: "Вот наше меню:\n- Первые блюда: Суп грибной, Борщ.\n- Основные блюда: Стейк из лосося, Паста карбонара.\n- Напитки: Вино красное, Сок апельсиновый.\nЧто вы хотите заказать?"
-#  utter_confirm_order:
-#    - text: "Ваш заказ:\n- {dish}\n- {drink}\nВсе верно?"
-
-actions:
-  - action_book_table
-  - action_take_order
+entities:
+  - food
+  - city
+  - date
+  - time
+  - address
 
 slots:
+  food:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: food
+  city:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: city
   date:
     type: text
     mappings:
-      - type: from_text
+      - type: from_entity
         entity: date
   time:
     type: text
     mappings:
-      - type: from_text
+      - type: from_entity
         entity: time
-  party_size:
+  address:
     type: text
     mappings:
-      - type: from_text
-  special_request:
-    type: text
-    mappings:
-      - type: from_text
-  dish:
-    type: text
-    mappings:
-      - type: from_text
-  drink:
-    type: text
-    mappings:
-      - type: from_text
+      - type: from_entity
+        entity: address
 
-entities:
-  - date
-  - time
+responses:
+  utter_greet:
+    - text: "Привет! Добро пожаловать в наш ресторан. Чем могу помочь?"
+  utter_ask_food:
+    - text: "Что бы вы хотели заказать?"
+  utter_ask_city:
+    - text: "В каком городе вы находитесь?"
+  utter_ask_date:
+    - text: "На какую дату вам нужен заказ?"
+  utter_ask_time:
+    - text: "На какое время вам доставить заказ?"
+  utter_ask_address:
+    - text: "Пожалуйста, укажите ваш адрес."
+  utter_confirm_order:
+    - text: "Вы хотите заказать {food} в {city} на {date} в {time} по адресу {address}?"
+  utter_menu:
+    - text: "Наше меню: пицца, суши, бургеры, паста. Что вас интересует?"
+  utter_working_hours:
+    - text: "Мы работаем с 10:00 до 22:00 каждый день."
+  utter_goodbye:
+    - text: "Спасибо за заказ! До свидания!"
 
-session_config:
-  session_expiration_time: 1
-  carry_over_slots_to_new_session: false
+actions:
+  - action_confirm_order

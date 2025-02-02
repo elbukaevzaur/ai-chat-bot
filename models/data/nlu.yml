@@ -4,43 +4,37 @@ nlu:
   - intent: greet
     examples: |
       - Привет
-      - Ассаламу 1алайкум
       - Здравствуйте
-      - Де дик хил
-      - Суьйре дик хил
-  - intent: like_book_table
+      - Добрый день
+      - Приветствую
+
+  - intent: order_food
     examples: |
-      - Хочу забронировать столик
-      - Забронируйте мне столик
-  - intent: provide_date_time
+      - Я хочу заказать [пиццу](food)
+      - Привезите [суши](food) в [Москве](city)
+      - Закажите [бургер](food) на [завтра](date) в [18:00](time)
+      - Мне нужна [паста](food) по адресу [ул. Ленина, 10](address)
+
+  - intent: provide_info
     examples: |
-      - На [завтра](date), в [19:00](time)
-      - [Сегодня](date) в [20:00](time)
-      - 15 числа в 18:30
-      - В следующую субботу в 14:00
-      - Через неделю в 12:00
-#  - intent: provide_party_size
-#    examples: |
-#      - На 4 человека
-#      - На двоих
-#  - intent: special_request
-#    examples: |
-#      - Столик у окна
-#      - В VIP-зоне
-#  - intent: order_food
-#    examples: |
-#      - Хочу сделать заказ
-#      - Покажите меню
-#  - intent: choose_dish
-#    examples: |
-#      - Я возьму борщ
-#      - Стейк из лосося
-#  - intent: choose_drink
-#    examples: |
-#      - Вода
-#      - Сок апельсиновый
-#      - Коктейль
-#  - intent: confirm_order
-#    examples: |
-#      - Да, все верно
-#      - Подтверждаю заказ
+      - Мой адрес [ул. Пушкина, 5](address)
+      - Я нахожусь в [Санкт-Петербурге](city)
+      - Доставьте в [15:00](time)
+
+  - intent: ask_menu
+    examples: |
+      - Что у вас в меню?
+      - Какие блюда есть?
+      - Покажите меню
+
+  - intent: ask_working_hours
+    examples: |
+      - Когда вы работаете?
+      - Ваши часы работы?
+      - До скольки вы открыты?
+
+  - intent: goodbye
+    examples: |
+      - Пока
+      - До свидания
+      - Спасибо, всего доброго
