@@ -5,7 +5,7 @@ stories:
     steps:
       - intent: greet
       - action: utter_greet
-      - intent: book_table
+      - intent: like_book_table
       - action: utter_ask_date_time
       - intent: provide_date_time
       - action: action_book_table
