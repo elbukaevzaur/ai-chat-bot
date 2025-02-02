@@ -1,15 +1,15 @@
-version: "3.0"
+version: "3.1"
 
 intents:
   - greet
   - book_table
   - provide_date_time
-  - provide_party_size
-  - special_request
-  - order_food
-  - choose_dish
-  - choose_drink
-  - confirm_order
+#  - provide_party_size
+#  - special_request
+#  - order_food
+#  - choose_dish
+#  - choose_drink
+#  - confirm_order
 
 responses:
   utter_greet:
@@ -18,14 +18,14 @@ responses:
     - text: "На какое число и время вы хотите забронировать столик?"
   utter_ask_party_size:
     - text: "На сколько человек нужен столик?"
-  utter_ask_special_request:
-    - text: "Есть ли у вас особые пожелания? Например, столик у окна или в VIP-зоне?"
-  utter_confirm_booking:
-    - text: "Хорошо, я забронировал для вас столик на {party_size} человека на {date} в {time}. Ждем вас!"
-  utter_show_menu:
-    - text: "Вот наше меню:\n- Первые блюда: Суп грибной, Борщ.\n- Основные блюда: Стейк из лосося, Паста карбонара.\n- Напитки: Вино красное, Сок апельсиновый.\nЧто вы хотите заказать?"
-  utter_confirm_order:
-    - text: "Ваш заказ:\n- {dish}\n- {drink}\nВсе верно?"
+#  utter_ask_special_request:
+#    - text: "Есть ли у вас особые пожелания? Например, столик у окна или в VIP-зоне?"
+#  utter_confirm_booking:
+#    - text: "Хорошо, я забронировал для вас столик на {party_size} человека на {date} в {time}. Ждем вас!"
+#  utter_show_menu:
+#    - text: "Вот наше меню:\n- Первые блюда: Суп грибной, Борщ.\n- Основные блюда: Стейк из лосося, Паста карбонара.\n- Напитки: Вино красное, Сок апельсиновый.\nЧто вы хотите заказать?"
+#  utter_confirm_order:
+#    - text: "Ваш заказ:\n- {dish}\n- {drink}\nВсе верно?"
 
 actions:
   - action_book_table

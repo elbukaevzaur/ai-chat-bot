@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.1"
 
 nlu:
   - intent: greet
@@ -8,7 +8,7 @@ nlu:
       - Здравствуйте
       - Де дик хил
       - Суьйре дик хил
-  - intent: book_table
+  - intent: like_book_table
     examples: |
       - Хочу забронировать столик
       - Забронируйте мне столик
@@ -19,28 +19,28 @@ nlu:
       - 15 числа в 18:30
       - В следующую субботу в 14:00
       - Через неделю в 12:00
-  - intent: provide_party_size
-    examples: |
-      - На 4 человека
-      - На двоих
-  - intent: special_request
-    examples: |
-      - Столик у окна
-      - В VIP-зоне
-  - intent: order_food
-    examples: |
-      - Хочу сделать заказ
-      - Покажите меню
-  - intent: choose_dish
-    examples: |
-      - Я возьму борщ
-      - Стейк из лосося
-  - intent: choose_drink
-    examples: |
-      - Вода
-      - Сок апельсиновый
-      - Коктейль
-  - intent: confirm_order
-    examples: |
-      - Да, все верно
-      - Подтверждаю заказ
+#  - intent: provide_party_size
+#    examples: |
+#      - На 4 человека
+#      - На двоих
+#  - intent: special_request
+#    examples: |
+#      - Столик у окна
+#      - В VIP-зоне
+#  - intent: order_food
+#    examples: |
+#      - Хочу сделать заказ
+#      - Покажите меню
+#  - intent: choose_dish
+#    examples: |
+#      - Я возьму борщ
+#      - Стейк из лосося
+#  - intent: choose_drink
+#    examples: |
+#      - Вода
+#      - Сок апельсиновый
+#      - Коктейль
+#  - intent: confirm_order
+#    examples: |
+#      - Да, все верно
+#      - Подтверждаю заказ
