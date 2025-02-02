@@ -10,7 +10,6 @@ intents:
   - choose_dish
   - choose_drink
   - confirm_order
-  - action_book_table
 
 responses:
   utter_greet:
